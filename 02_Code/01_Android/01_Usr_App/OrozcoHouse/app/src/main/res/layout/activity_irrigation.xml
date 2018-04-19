@@ -8,260 +8,319 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
+    <ImageButton
+        android:id="@+id/Irr_btn_irrigation"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginStart="57dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/irrigation_s"
+        app:layout_constraintLeft_toRightOf="@+id/Irr_btn_Lights"
+        app:layout_constraintTop_toTopOf="@+id/Irr_btn_Lights" />
+
+    <ImageButton
+        android:id="@+id/Irr_btn_market"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginStart="57dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/market_ns"
+        app:layout_constraintLeft_toRightOf="@+id/Irr_btn_irrigation"
+        app:layout_constraintTop_toTopOf="@+id/Irr_btn_irrigation" />
+
+    <ImageButton
+        android:id="@+id/Irr_btn_Lights"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/lights_ns"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintRight_toLeftOf="@+id/timePicker"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/timePicker" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="12dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/Irr_btn_irrigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/bar"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="M"
-        app:layout_constraintRight_toLeftOf="@+id/textView8"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="56dp"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        android:layout_marginTop="-24dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        android:layout_marginStart="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView5"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="M"
-        app:layout_constraintRight_toLeftOf="@+id/textView9"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="24dp"
-        app:layout_constraintTop_toTopOf="@+id/textView9"
-        android:layout_marginTop="-16dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView7"
+        android:layout_marginStart="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView7"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="J"
-        app:layout_constraintRight_toLeftOf="@+id/textView10"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="37dp"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
-        android:layout_marginTop="0dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView8"
+        android:layout_marginStart="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView8"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="D"
-        tools:layout_editor_absoluteX="303dp"
-        tools:layout_editor_absoluteY="318dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        android:layout_marginStart="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView11"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="S"
-        app:layout_constraintRight_toLeftOf="@+id/textView12"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="25dp"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        android:layout_marginStart="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView10"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="V"
-        app:layout_constraintRight_toLeftOf="@+id/textView11"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="28dp"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
-        android:layout_marginTop="0dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        android:layout_marginStart="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView9"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="15dp"
         android:text="L"
-        app:layout_constraintRight_toLeftOf="@+id/textView7"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="85dp"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        android:layout_marginTop="-32dp" />
+        app:layout_constraintBottom_toTopOf="@+id/timePicker"
+        app:layout_constraintTop_toTopOf="@+id/Ir_cb_lunes"
+        app:layout_constraintVertical_bias="0.562"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintRight_toRightOf="@+id/Ir_cb_lunes"
+        android:layout_marginRight="10dp" />
 
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintRight_toLeftOf="@+id/checkBox3"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintTop_toTopOf="@+id/checkBox4"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/checkBox4"
+        android:layout_marginLeft="8dp" />
 
     <CheckBox
         android:id="@+id/checkBox4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintRight_toLeftOf="@+id/checkBox2"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="11dp" />
+        app:layout_constraintTop_toTopOf="@+id/Ir_cb_lunes"
+        android:layout_marginStart="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/Ir_cb_lunes"
+        android:layout_marginLeft="7dp" />
 
     <CheckBox
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintRight_toLeftOf="@+id/checkBox5"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="9dp" />
+        app:layout_constraintTop_toTopOf="@+id/checkBox2"
+        android:layout_marginStart="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/checkBox2"
+        android:layout_marginLeft="7dp" />
 
     <CheckBox
         android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintRight_toLeftOf="@+id/checkBox6"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="-3dp" />
+        app:layout_constraintTop_toTopOf="@+id/checkBox3"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/checkBox3"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="22dp"
         android:text="Mins"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toLeftOf="@+id/Ir_bp_Patio"
+        app:layout_constraintTop_toTopOf="@+id/Ir_bp_Patio"
+        android:layout_marginEnd="22dp" />
 
     <NumberPicker
         android:id="@+id/Ir_bp_Frente"
-        android:layout_width="40dp"
+        android:layout_width="55dp"
         android:layout_height="17dp"
         android:longClickable="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="105dp" />
+        android:layout_marginStart="34dp"
+        app:layout_constraintLeft_toRightOf="@+id/Ir_bp_Excedente"
+        android:layout_marginLeft="34dp"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="29dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <NumberPicker
         android:id="@+id/Ir_bp_Excedente"
-        android:layout_width="40dp"
+        android:layout_width="55dp"
         android:layout_height="17dp"
         android:longClickable="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="74dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="77dp"
-        android:layout_height="60dp"
-        android:adjustViewBounds="false"
-        android:background="@drawable/lights_ns"
-        tools:layout_editor_absoluteY="435dp"
-        tools:layout_editor_absoluteX="40dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="63dp"
-        android:layout_height="62dp"
-        android:adjustViewBounds="false"
-        android:background="@drawable/irrigation_s"
-        tools:layout_editor_absoluteY="433dp"
-        tools:layout_editor_absoluteX="161dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="54dp"
-        android:layout_height="58dp"
-        android:adjustViewBounds="false"
-        android:background="@drawable/market_ns"
-        tools:layout_editor_absoluteY="437dp"
-        tools:layout_editor_absoluteX="278dp" />
+        app:layout_constraintTop_toTopOf="@+id/Ir_bp_Frente"
+        android:layout_marginStart="33dp"
+        app:layout_constraintLeft_toRightOf="@+id/Ir_bp_Patio"
+        android:layout_marginLeft="33dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Patio"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="42dp" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        app:layout_constraintRight_toRightOf="@+id/textView10"
+        android:layout_marginTop="33dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="101dp"
+        android:layout_marginRight="101dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Excedente"
-        tools:layout_editor_absoluteY="71dp"
-        tools:layout_editor_absoluteX="95dp" />
+        android:layout_marginStart="34dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView"
+        android:layout_marginLeft="34dp"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="33dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Frente"
-        tools:layout_editor_absoluteY="105dp"
-        tools:layout_editor_absoluteX="117dp" />
+        android:layout_marginStart="35dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        android:layout_marginLeft="35dp"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="33dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <NumberPicker
         android:id="@+id/Ir_bp_Patio"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
         android:layout_height="17dp"
         android:longClickable="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="42dp" />
+        app:layout_constraintTop_toTopOf="@+id/Ir_bp_Excedente"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toRightOf="@+id/textView5" />
 
     <ImageButton
         android:id="@+id/Ir_btn_Encender_Riego"
         android:layout_width="61dp"
         android:layout_height="59dp"
         android:background="@drawable/switch_off"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@+id/Ir_bp_Excedente"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351"
-        app:layout_constraintHorizontal_bias="0.501" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <CheckBox
         android:id="@+id/Ir_cb_lunes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintRight_toLeftOf="@+id/checkBox4"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="2dp" />
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/timePicker"
+        android:layout_marginStart="55dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="29dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="55dp" />
 
     <CheckBox
         android:id="@+id/checkBox7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="300dp"
-        tools:layout_editor_absoluteY="285dp" />
+        app:layout_constraintTop_toTopOf="@+id/checkBox6"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/checkBox6"
+        android:layout_marginLeft="8dp" />
 
     <CheckBox
         android:id="@+id/checkBox6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="285dp"
-        app:layout_constraintRight_toLeftOf="@+id/checkBox7"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="15dp" />
+        app:layout_constraintTop_toTopOf="@+id/checkBox5"
+        android:layout_marginStart="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/checkBox5"
+        android:layout_marginLeft="7dp" />
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="218dp"
-        android:layout_height="81dp"
-        android:layout_marginLeft="80dp"
+        android:layout_width="232dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="20dp"
         android:timePickerMode="spinner"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="335dp"
-        android:layout_marginStart="80dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Switch
         android:id="@+id/Automation"
         android:layout_width="140dp"
-        android:layout_height="26dp"
+        android:layout_height="27dp"
         android:text="Automation  "
-        app:layout_constraintHorizontal_bias="0.503"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/Ir_btn_Encender_Riego"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="258dp"
-        tools:layout_editor_absoluteX="113dp" />
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
 </android.support.constraint.ConstraintLayout>
