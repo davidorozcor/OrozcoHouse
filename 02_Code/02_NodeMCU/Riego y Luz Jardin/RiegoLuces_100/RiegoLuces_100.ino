@@ -124,7 +124,7 @@ void luces_state(){
 }
 
 void all_state(){
-  server.send(200, "text/html", "{'Riego excedente':'"+riego_excedente+"','Riego patio':'"+riego_patio+"','Riego frente':'"+riego_frente+"','Luces':'"+luces+"'}");
+  server.send(200, "text/html", "{\"Riego_excedente\":\""+riego_excedente+"\",\"Riego_patio\":\""+riego_patio+"\",\"Riego_frente\":\""+riego_frente+"\",\"Luces\":\""+luces+"\"}");
 }
 
 
