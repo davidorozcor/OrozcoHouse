@@ -70,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
     private void SwitchLight() {
 
 
-
-
-
         if (mSwitchLightTask != null) {
             return;
         }

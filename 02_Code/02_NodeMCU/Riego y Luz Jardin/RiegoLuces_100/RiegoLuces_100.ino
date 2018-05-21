@@ -2,10 +2,10 @@
 #include <ESP8266WebServer.h>
 
 //Our Wi-Fi ssdid and password
-//char* ssid = "Orozco_Network"; //Put your Wi-Fi ssdid here
-//char* password = "05062013"; //Your Wi-Fi Password
-char* ssid = "INFINITUM8500"; //Put your Wi-Fi ssdid here
-char* password = "1HfaNG4F3H"; //Your Wi-Fi Password
+char* ssid = "Orozco_Network"; //Put your Wi-Fi ssdid here
+char* password = "05062013"; //Your Wi-Fi Password
+//char* ssid = "INFINITUM8500"; //Put your Wi-Fi ssdid here
+//char* password = "1HfaNG4F3H"; //Your Wi-Fi Password
 String riego_excedente = "0";
 String riego_patio = "0";
 String riego_frente = "0";
