@@ -16,6 +16,11 @@ GPIO.setup(LEDS["green"], GPIO.OUT)
 GPIO.setup(LEDS["red1"], GPIO.OUT)
 GPIO.setup(LEDS["red2"], GPIO.OUT)
 
+MCU_IP_Address = "192.168.1.100"
+
+boRegando = False
+boLucesEncendidads = False
+
 boSuspenderRiego = False
 boSuspendeLuzJardin = False
 
@@ -46,7 +51,7 @@ def Estatus():
     MCU_101_OnLine = False
     
     # MCU .100 Riego y Luces Jardin
-    response = requests.get("http://192.168.1.100/status")
+    response = requests.get("http://" + MCU_IP_Address + "/status")
     if response.status_code == 200:
         
         MCU_100_OnLine = True
@@ -59,28 +64,28 @@ def Estatus():
         MCU_100_Riego_Patio_Status = False
         MCU_100_Luz_Jardin_Status = False
         
-        if JsonData['Luces'] == "0":
+        if JsonData['luces'] == "0":
             MCU_100_Luz_Jardin_Status = False
             print ("MCU_100_Luz_Jardin_Status : False")
         else:
             MCU_100_Luz_Jardin_Status = True
             print ("MCU_100_Luz_Jardin_Status : True")
             
-        if JsonData['Riego_excedente'] == "0":
+        if JsonData['riego_excedente'] == "0":
             MCU_100_Riego_Excedente_Status = False
             print ("MCU_100_Riego_Excedente_Status : False")
         else:
             MCU_100_Riego_Excedente_Status = True
             print ("MCU_100_Riego_Excedente_Status : True")
             
-        if JsonData['Riego_patio'] == "0":
+        if JsonData['riego_patio'] == "0":
             MCU_100_Riego_Patio_Status = False
             print ("MCU_100_Riego_Patio_Status : False")
         else:
             MCU_100_Riego_Patio_Status = True
             print ("MCU_100_Riego_Patio_Status : True")
             
-        if JsonData['Riego_frente'] == "0":
+        if JsonData['riego_frente'] == "0":
             MCU_100_Riego_Frente_Status = False
             print ("MCU_100_Riego_Frente_Status : False")
         else:
@@ -111,8 +116,9 @@ def LuzJardin():
         else:
             prendido = False
     
-    u = urllib.request.urlopen("http://192.168.1.100/luces")
+    u = urllib.request.urlopen("http://" + MCU_IP_Address + "/luces")
     print("apaga luz jardin")
+
 
 def inicia_riego():
     #def inicia_riego(JsonRutinaRiego):
@@ -127,15 +133,18 @@ def inicia_riego():
     global iTiempoRiegoFrente 
     
     global boSuspenderRiego
+    global boRegando
     
     print("inica rutina de riego")
     
+    #DaOr // Verifica status y apaga todo
+    
     #=========================================================
-    if iTiempoRiegoPatio > 0 and not boSuspenderRiego: 
+    if iTiempoRiegoPatio > 0 and not boSuspenderRiego : 
         tCurrent = time.time()
         tStop = tCurrent + (iTiempoRiegoFrente*60) #Multiplicado por 60 (segundos) para recibir minutos
     
-        u = urllib.request.urlopen("http://192.168.1.100/riego_frente")
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_frente")
         print ("Riego frente prendido")
         
         prendido = True
@@ -149,7 +158,7 @@ def inicia_riego():
             else:
                 prendido = False
         
-        u = urllib.request.urlopen("http://192.168.1.100/riego_frente")
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_frente")
         print("Riego frente apagado")
     
     #=========================================================
@@ -157,7 +166,7 @@ def inicia_riego():
         tCurrent = time.time()
         tStop = tCurrent + (iTiempoRiegoExcedente*60) #Multiplicado por 60 (segundos) para recibir minutos
     
-        u = urllib.request.urlopen("http://192.168.1.100/riego_excedente")
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_excedente")
         print ("Riego excedente prendido")
         
         prendido = True
@@ -171,7 +180,7 @@ def inicia_riego():
             else:
                 prendido = False
         
-        u = urllib.request.urlopen("http://192.168.1.100/riego_excedente")
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_excedente")
         print("Riego excendente apagado")
 
     
@@ -180,7 +189,7 @@ def inicia_riego():
         tCurrent = time.time()
         tStop = tCurrent + (iTiempoRiegoPatio*60) #Multiplicado por 60 (segundos) para recibir minutos
     
-        u = urllib.request.urlopen("http://192.168.1.100/riego_patio")
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_patio")
         print ("Riego patio prendido")
         
         prendido = True
@@ -194,11 +203,29 @@ def inicia_riego():
             else:
                 prendido = False
         
-        u = urllib.request.urlopen("http://192.168.1.100/riego_patio")
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_patio")
         print("Riego patio apagado")
+        
+                
+    ApagaRiego()
     
+    boRegando = False
     boSuspenderRiego = False
     print ("rutina de riego terminada")
+    
+def ApagaRiego():
+    
+    Estatus()
+    
+    if MCU_100_Riego_Frente_Status == True:
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_frente")
+        print ("Riego frente apagado")
+    if MCU_100_Riego_Excedente_Status == True:
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_excedente")
+        print ("Riego excedente apagado")
+    if MCU_100_Riego_Patio_Status == True:
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_patio")
+        print ("Riego patio apagado")
 
 app = FlaskAPI(__name__)
 
@@ -209,17 +236,19 @@ def api_root():
       		 "led_url_POST": {"state": "(0 | 1)"}
     			 }
 
-@app.route('/led/<color>/', methods=["GET", "POST"]) def api_leds_control2(color):
+@app.route('/led/<color>/', methods=["GET", "POST"])
+def api_leds_control2(color):
     print("inica rutina led")
     if request.method == "POST":
         if color in LEDS:
             
             GPIO.output(LEDS[color], int(request.data.get("state")))
-        #u = urllib.request.urlopen("http://192.168.1.100/room_light")
+        #u = urllib.request.urlopen("http://" + MCU_IP_Address + "/room_light")
         #print("Call room light")
     return {color: GPIO.input(LEDS[color])}
 
-@app.route('/suspende_rutina_riego/', methods=["GET"]) def suspende_riego():
+@app.route('/suspende_rutina_riego/', methods=["GET"])
+def suspende_riego():
     global boSuspenderRiego
     global MCU_100_OnLine
 
@@ -228,7 +257,8 @@ def api_root():
         boSuspenderRiego = True
         return {"rutina de riego suspendida":"yes"}
     
-@app.route('/rutina_riego/<JsonRutinaRiego>', methods=["GET"]) def rutina_riego(JsonRutinaRiego):
+@app.route('/rutina_riego/<JsonRutinaRiego>', methods=["GET"])
+def rutina_riego(JsonRutinaRiego):
     
     #t1 = threading.Thread(target=inicia_riego(JsonRutinaRiego))
     
@@ -239,7 +269,10 @@ def api_root():
     global MCU_100_OnLine
     global MCU_100_Riego_Frente_Status 
     global MCU_100_Riego_Excedente_Status 
-    global MCU_100_Riego_Patio_Status 
+    global MCU_100_Riego_Patio_Status
+    
+    global boRegando
+    global boSuspenderRiego
     
     JsonRutinaData = json.loads(JsonRutinaRiego)
     iTiempoRiegoExcedente = JsonRutinaData['tiempo_riego_excedente']
@@ -249,30 +282,29 @@ def api_root():
     Estatus()
     
     #Apaga riego en caso de estar encendidas
-    if MCU_100_OnLine == True:
-        if MCU_100_Riego_Frente_Status == True:
-            u = urllib.request.urlopen("http://192.168.1.100/riego_frente")
-            print ("Riego frente apagado")
-        if MCU_100_Riego_Excedente_Status == True:
-            u = urllib.request.urlopen("http://192.168.1.100/riego_excedente")
-            print ("Riego excedente apagado")
-        if MCU_100_Riego_Patio_Status == True:
-            u = urllib.request.urlopen("http://192.168.1.100/riego_patio")
-            print ("Riego patio apagado")
+    if MCU_100_OnLine == True and not boRegando:
+
+        boRegando = True
+        boSuspenderRiego = False
+        ApagaRiego()
             
-    
         tRiego = threading.Thread(target=inicia_riego)
         tRiego.start()
-        
+    
         #inicia_riego()
         print ("Riego iniciado")
         return {"Riego iniciado": "yes"}
-    else:
+        
+    elif MCU_100_OnLine == False:
         print ("Error server 100")
-        return {"status": "error"}
+        return {"status": "error server 100 no encontrado"}
+    
+    elif boRegando == True:
+        print ("Rutina de riego en proceso")
+        return {"status": "Rutina de riego en proceso"}
 
-
-@app.route('/suspende_rutina_luz/', methods=["GET"]) def suspende_rutina_luz():
+@app.route('/suspende_rutina_luz/', methods=["GET"])
+def suspende_rutina_luz():
     
     global boSuspendeLuzJardin
     global MCU_100_OnLine
@@ -287,7 +319,8 @@ def api_root():
     print("Luces suspendidas")
     return {"status":"success"}
     
-@app.route('/switch_light/<JsonRutinaData>', methods=["GET"]) def switch_light(JsonRutinaData):
+@app.route('/switch_light/<JsonRutinaData>', methods=["GET"])
+def switch_light(JsonRutinaData):
     
     global iTiempoLuzJardin
     global MCU_100_OnLine
@@ -301,7 +334,7 @@ def api_root():
     Estatus()
     if MCU_100_OnLine == True:
         if MCU_100_Luz_Jardin_Status == False:
-            u = urllib.request.urlopen("http://192.168.1.100/luces")
+            u = urllib.request.urlopen("http://" + MCU_IP_Address + "/luces")
             print ("Luces prendidas 1")
         
         tLuzJardin = threading.Thread(target=LuzJardin)
