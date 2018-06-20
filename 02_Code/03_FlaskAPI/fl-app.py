@@ -2,7 +2,7 @@
 
 from flask import request
 from flask_api import FlaskAPI
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
 import urllib.request
 import threading
@@ -10,11 +10,11 @@ import mysql.connector
 import json
 import requests
 
-LEDS = {"green": 16, "red1": 18, "red2": 22}
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(LEDS["green"], GPIO.OUT)
-GPIO.setup(LEDS["red1"], GPIO.OUT)
-GPIO.setup(LEDS["red2"], GPIO.OUT)
+#LEDS = {"green": 16, "red1": 18, "red2": 22}
+#GPIO.setmode(GPIO.BOARD)
+#GPIO.setup(LEDS["green"], GPIO.OUT)
+#GPIO.setup(LEDS["red1"], GPIO.OUT)
+#GPIO.setup(LEDS["red2"], GPIO.OUT)
 
 MCU_IP_Address = "192.168.1.100"
 
@@ -99,25 +99,30 @@ def Estatus():
 def LuzJardin():
     
     global iTiempoLuzJardin
+    global boSuspendeLuzJardin
     
-    tCurrent = time.time()
-    tStop = tCurrent + (iTiempoLuzJardin*60) #Multiplicado por 60 (segundos) para recibir minutos
+    #=========================================================
+    print("tiempo luces jardin: " + str(iTiempoLuzJardin))
+    if iTiempoLuzJardin > 0 and not boSuspendeLuzJardin:
     
-    prendido = True
-    while prendido and not boSuspendeLuzJardin:
-        time.sleep(1) #Duerme por 1 segudo
-        if tStop >= tCurrent:
-            
-            print("Luz Jardin restate: %d secs" % (tStop - time.time()))
-            tCurrent = time.time()
-            if boSuspendeLuzJardin == True:
-                break
+        tCurrent = time.time()
+        tStop = tCurrent + (iTiempoLuzJardin*60) #Multiplicado por 60 (segundos) para recibir minutos
+        
+        prendido = True
+        while prendido and not boSuspendeLuzJardin:
+            time.sleep(1) #Duerme por 1 segudo
+            if tStop >= tCurrent:
+                
+                print("Luz Jardin restate: %d secs" % (tStop - time.time()))
+                tCurrent = time.time()
+                if boSuspendeLuzJardin == True:
+                    break
 
-        else:
-            prendido = False
-    
-    u = urllib.request.urlopen("http://" + MCU_IP_Address + "/luces")
-    print("apaga luz jardin")
+            else:
+                prendido = False
+        
+        u = urllib.request.urlopen("http://" + MCU_IP_Address + "/luces")
+        print("apaga luz jardin")
 
 
 def inicia_riego():
@@ -140,7 +145,9 @@ def inicia_riego():
     #DaOr // Verifica status y apaga todo
     
     #=========================================================
-    if iTiempoRiegoPatio > 0 and not boSuspenderRiego : 
+    print("tiempo Frente: " + str(iTiempoRiegoFrente))
+    if iTiempoRiegoFrente > 0 and not boSuspenderRiego :
+        
         tCurrent = time.time()
         tStop = tCurrent + (iTiempoRiegoFrente*60) #Multiplicado por 60 (segundos) para recibir minutos
     
@@ -161,8 +168,11 @@ def inicia_riego():
         u = urllib.request.urlopen("http://" + MCU_IP_Address + "/riego_frente")
         print("Riego frente apagado")
     
+    
     #=========================================================
+    print("tiempo excedente: " + str(iTiempoRiegoExcedente))
     if iTiempoRiegoExcedente > 0 and not boSuspenderRiego:
+        
         tCurrent = time.time()
         tStop = tCurrent + (iTiempoRiegoExcedente*60) #Multiplicado por 60 (segundos) para recibir minutos
     
@@ -185,7 +195,9 @@ def inicia_riego():
 
     
     #=========================================================
+    print("tiempo patio: " + str(iTiempoRiegoPatio))
     if iTiempoRiegoPatio > 0 and not boSuspenderRiego:
+        
         tCurrent = time.time()
         tStop = tCurrent + (iTiempoRiegoPatio*60) #Multiplicado por 60 (segundos) para recibir minutos
     
@@ -352,3 +364,4 @@ if __name__ == "__main__":
     Estatus()
     print("despues de 5 sec")
     app.run()
+
