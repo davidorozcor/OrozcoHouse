@@ -68,10 +68,10 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `IoT_House`.`process_status`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `IoT_House`.`process_status` (
-  `process_status_id` INT NOT NULL AUTO_INCREMENT,
-  `process_status_name` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`process_status_id`))
+CREATE TABLE IF NOT EXISTS `IoT_House`.`automation_process_status` (
+  `automation_process_status_id` INT NOT NULL AUTO_INCREMENT,
+  `automation_process_status_name` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`automation_process_status_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0;
 
@@ -84,8 +84,20 @@ CREATE TABLE IF NOT EXISTS `IoT_House`.`automation_process` (
   `automation_processs_time_start`  DATETIME NOT NULL,
   `automation_process_duration_minutes` INT,
   `automation_process_process_status_id` INT NOT NULL,
+  `automation_processs_Monday` INT DEFAULT 0,
+  `automation_processs_Tuesday` INT DEFAULT 0,
+  `automation_processs_Wednesday` INT DEFAULT 0,
+  `automation_processs_Thursday` INT DEFAULT 0,
+  `automation_processs_Friday` INT DEFAULT 0,
+  `automation_processs_Saturday` INT DEFAULT 0,
+  `automation_processs_Sunday` INT DEFAULT 0,
   PRIMARY KEY (`automation_process_id`),
-  INDEX `fk_automation_process_process_status_id1_idx` (`automation_process_process_status_id` ASC))
+  INDEX `fk_automation_process_process_status_id1_idx` (`automation_process_process_status_id` ASC),
+  CONSTRAINT `fk_automation_process_process_status_id1`
+    FOREIGN KEY (`automation_process_process_status_id`)
+    REFERENCES `IoT_House`.`automation_process_status` (`automation_process_status_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 0;
 
@@ -128,8 +140,8 @@ INSERT INTO IoT_House.user_types (user_types_Name) VALUES ('Standart User');
 -- -----------------------------------------------------
 -- Table `IoT_House`.`process_status` VALUE INITIALIZATION
 -- -----------------------------------------------------
-INSERT INTO IoT_House.process_status (process_status_name) VALUES ('enabled');
-INSERT INTO IoT_House.process_status (process_status_name) VALUES ('disabled');
+INSERT INTO IoT_House.automation_process_status (automation_process_status_name) VALUES ('enabled');
+INSERT INTO IoT_House.automation_process_status (automation_process_status_name) VALUES ('disabled');
 
 -- -----------------------------------------------------
 -- Table `IoT_House`.`pantry_categories` VALUE INITIALIZATION
